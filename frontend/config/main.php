@@ -1,4 +1,4 @@
-<?php
+	<?php
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
@@ -11,12 +11,13 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'language' => 'zh-CN',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'frontend\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
@@ -36,14 +37,23 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'showScriptName' => true,
             'rules' => [
             ],
         ],
-        */
+        'i18n'=>[
+	        'translations'=>[
+		        '*'=>[
+			        'class'=>'yii\i18n\PhpMessageSource',
+			        'fileMap'=>[
+				        'common'=>'common.php',
+			        ],
+		        ]
+	        ],
+        ],
     ],
     'params' => $params,
 ];
